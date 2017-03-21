@@ -1,0 +1,12 @@
+@import "bootstrap";
+
+.new_user {
+  max-width: 500px;
+}
+
+.field_with_errors {
+  @extend .form-control-danger;
+  @extend .has-danger;
+
+  display: inline-block;
+}
