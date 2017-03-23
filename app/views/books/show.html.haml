@@ -1,0 +1,22 @@
+.row
+  .col
+    = image_tag @book.photo.url(:thumb), alt: @book.title, class: 'img-thumbnail float-right' if @book.photo.exists?
+  .col
+    .row
+      %dl
+        %dt.col-sm-3 Author
+        %dd.col-sm-9= @book.author
+
+        %dt.col-sm-3 Title
+        %dd.col-sm-9= @book.title
+
+        %dt.col-sm-3 Description
+        %dd.col-sm-9= @book.description
+    .row.align-bottom
+      - if user_signed_in? && @book.user_id == current_user.id
+        = link_to "Edit", edit_book_path(:id => @book.id), class: 'btn btn-lg btn-success mx-3'
+        = link_to "Coupon", book_coupons_path(:book_id => @book.id), method: 'post', remote: true, id: 'get_coupon', class: 'btn btn-lg btn-danger' if !@book.free
+      - else
+        = link_to "Download", @book.source.url(), class: 'btn btn-lg btn-success'
+
+  = render 'books/coupon_modal'

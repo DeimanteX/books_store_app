@@ -1,0 +1,17 @@
+.book_form
+  = form_for(@book) do |f|
+    .field.form-group
+      = f.text_field :author, class: 'form-control', placeholder: "Author"
+    .field.form-group
+      = f.text_field :title, class: 'form-control', placeholder: "Title"
+    .field.form-group
+      = f.text_area :description, class: 'form-control', placeholder: "Description"
+    .field.form-check
+      = f.check_box :free
+      = f.label :free
+    .field.form-check
+      = f.file_field :photo, class: 'form-control'
+    .field.form-check
+      = f.file_field :source, class: 'form-control'
+    .actions
+      = f.submit "Save", class: 'btn btn-success'

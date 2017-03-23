@@ -1,0 +1,16 @@
+.row
+  .col-md-4
+    = pluralize(@books.total_count, "book")
+  .col-md-4.offset-md-4
+    - if user_signed_in? && request.original_url == author_books_url(author_id: current_user.id)
+      = link_to "NEW BOOK", new_book_path, :class => "btn btn-success btn-lg float-right"
+.row.mt-3
+  - @books.each do |book|
+    .col-sm-4.mt-3
+      .card
+        .card-block
+          %h6.card-subtitle.mb-2.text-muted.text-right= book.author
+          = image_tag book.photo.url(:thumb), alt: book.title, class: 'card-img-top img-fluid mx-auto d-block' if book.photo.exists?
+          %h4.card-title.mt-3= link_to book.title, book_path(book.id)
+.row.mt-3.justify-content-center
+  = paginate @books

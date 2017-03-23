@@ -1,9 +1,9 @@
 %nav.navbar.navbar-toggleable-md.navbar-inverse.bg-primary
   - if user_signed_in?
-    %u.pull-sm-right= link_to "Your Store", '#', :class => "text-white"
+    %u.pull-sm-right= link_to "Your Store", author_books_path(:author_id => current_user.id), :class => "text-white"
   %ul.nav.navbar-nav.navbar-logo.mx-auto
     %li
-      = link_to image_tag("book-store-logo.png", alt: "Books Store logo"), root_path
+      = link_to image_tag("book-store-logo.png", alt: "Books Store Logo"), root_path
     %li
       %h1= link_to "Books Store", root_path, :class => "text-white"
   %ul.nav.navbar-nav.pull-sm-right

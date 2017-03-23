@@ -16,6 +16,9 @@ gem 'jbuilder',     '2.5'
 gem 'bootstrap',    '4.0.0.alpha6'
 gem 'haml', '4.0.7'
 gem 'devise', '4.2.1'
+gem 'kaminari', '1.0.1'
+gem "paperclip", '5.1.0'
+gem 'rails-assets-tether', '1.1.1'
 
 group :development, :test do
   gem 'sqlite3', '1.3.12'
