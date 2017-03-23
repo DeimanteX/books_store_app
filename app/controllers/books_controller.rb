@@ -30,7 +30,7 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
 
-    if !@book.free && !check_coupon && (user_signed_in? && @book.user_id != current_user.id)
+    if !@book.free && !check_coupon && !(user_signed_in? && @book.user_id == current_user.id)
 
       flash[:error] = "Access denied!"
       redirect_to root_path
