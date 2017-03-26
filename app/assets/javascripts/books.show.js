@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
 
     $("#get_coupon")
         .bind("ajax:success", function(event, data, status, xhr) {
