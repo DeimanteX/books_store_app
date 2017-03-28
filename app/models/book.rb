@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
   belongs_to :user
-  has_many :coupons
+  has_one :coupon
 
   default_scope -> { order(created_at: :desc) }
   has_attached_file :photo, styles: { thumb: "300x300" }, default_url: "/images/:style/cat_book.jpg"

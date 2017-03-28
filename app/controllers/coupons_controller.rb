@@ -4,25 +4,19 @@ class CouponsController < ApplicationController
 
   def create
 
-    code = generate_code
-    @coupon = Coupon.new(book_id: params[:book_id], code: code)
+    @coupon = Coupon.find_by_book_id(params[:book_id])
+
+    unless @coupon.present?
+      @coupon = Coupon.create(book_id: params[:book_id])
+    end
 
     respond_to do |format|
-      if @coupon.save
+      if @coupon.errors.present?
+        format.json { render json: @coupon.errors, status: :unprocessable_entity }
+      else
         @book_coupon_path = book_url(@coupon.book_id, :coupon => @coupon.code)
         format.json { render json: { coupon_link: @book_coupon_path}, status: :created }
-      else
-        format.json { render json: @coupon.errors, status: :unprocessable_entity }
       end
     end
   end
-
-  private
-
-    def generate_code
-      begin
-        code = SecureRandom.hex(6)
-      end until Coupon.where("code = ?", code).count
-      return code
-    end
 end

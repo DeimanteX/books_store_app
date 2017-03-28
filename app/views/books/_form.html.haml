@@ -3,9 +3,9 @@
     .field.form-group
       = f.text_field :author, class: 'form-control', placeholder: "Author"
     .field.form-group
-      = f.text_field :title, class: 'form-control', placeholder: "Title"
+      = f.text_field :title, class: 'form-control', placeholder: "Title", maxlength: 40
     .field.form-group
-      = f.text_area :description, class: 'form-control', placeholder: "Description"
+      = f.text_area :description, class: 'form-control', placeholder: "Description", maxlength: 250
     .field.form-check
       = f.check_box :free
       = f.label :free
